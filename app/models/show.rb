@@ -1,27 +1,29 @@
-class Show < ActiveRecord::Base 
-  
-  def highest_rating 
-    Show.maximum("rating") 
-  end 
-  
-  def most_popular_show 
+class Show < ActiveRecord::Base
+  def Show::highest_rating
+    Show.maximum("rating")
+  end
+
+  def Show::most_popular_show
     Show.order(rating: :desc).first
-  end 
-  
-  def lowest_rating
+  end
+
+  def Show::lowest_rating
     Show.minimum("rating")
-  end 
-  
-  def least_popular_show 
-  end 
-  
-  def ratings_sum 
+  end
+
+  def Show::least_popular_show
+    Show.order(rating: :asc).first
+  end
+
+  def Show::ratings_sum
     Show.sum("rating")
-  end 
-  
-  def popular_shows 
-  end 
-  
-  def show_by_alphabetical_order 
-  end 
-end 
+  end
+
+  def Show::popular_shows
+    Show.where("rating > 5")
+  end
+
+  def Show::shows_by_alphabetical_order
+    Show.order(name: :asc)
+  end
+end
